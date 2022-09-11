@@ -1,0 +1,32 @@
+{
+  "name": "@astrolib/seo",
+  "version": "0.2.0",
+  "description": "Astro SEO",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "exports": {
+    ".": "./index.ts"
+  },
+  "files": [
+    "src",
+    "index.ts"
+  ],
+  "keywords": [
+    "astro-component"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "astro": "^1.2.1"
+  },
+  "peerDependencies": {
+    "astro": "^1.2.1"
+  },
+  "author": {
+    "name": "onWidget",
+    "email": "contact@onwidget.com",
+    "url": "https://github.com/onwidget"
+  },
+  "license": "MIT"
+}

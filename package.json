@@ -1,0 +1,17 @@
+{
+  "name": "astrolab",
+  "version": "0.1.0",
+  "description": "..",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+  },
+  "author": {
+    "name": "onWidget",
+    "email": "contact@onwidget.com",
+    "url": "https://github.com/onwidget"
+  }
+}

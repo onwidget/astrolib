@@ -1,0 +1,36 @@
+{
+  "name": "@astrolib/google-analytics",
+  "version": "0.0.6",
+  "description": "Provides Google Analytics 4 snippet injection.",
+  "main": "index.js",
+  "type": "module",
+  "publishConfig": {
+    "access": "public"
+  },
+  "homepage": "https://github.com/onwidget/astrolib/packages/google-analytics",
+  "bugs": {
+    "url": "https://github.com/onwidget/astrolib/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onwidget/astrolib",
+    "directory": "packages/google-analytics"
+  },
+  "scripts": {
+  },
+  "keywords": [
+    "astro",
+    "astro-component",
+    "astrolib",
+    "google-analytics",
+    "analytics",
+    "ga4",
+    "astro-integration"
+  ],
+  "author": {
+    "name": "onWidget",
+    "email": "contact@onwidget.com",
+    "url": "https://github.com/onwidget"
+  },
+  "license": "MIT"
+}
