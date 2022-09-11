@@ -31,8 +31,10 @@
   "keywords": [
     "astro-component",
     "astro",
+    "astrolib",
     "seo",
-    "astro-seo"
+    "astro-seo",
+    "astro-integration"
   ],
   "scripts": {},
   "devDependencies": {
