@@ -1,7 +1,22 @@
 {
   "name": "@astrolib/seo",
-  "version": "0.2.0",
-  "description": "Astro SEO",
+  "version": "0.2.1",
+  "description": "Managing your SEO easier in Astro projects",
+  "homepage": "https://github.com/onwidget/astrolib/tree/main/packages/seo",
+  "bugs": {
+    "url": "https://github.com/onwidget/astrolib/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/onwidget/astrolib.git",
+    "directory": "packages/seo"
+  },
+  "author": {
+    "name": "onWidget",
+    "email": "contact@onwidget.com",
+    "url": "https://github.com/onwidget"
+  },
+  "license": "MIT",
   "type": "module",
   "publishConfig": {
     "access": "public"
@@ -14,7 +29,10 @@
     "index.ts"
   ],
   "keywords": [
-    "astro-component"
+    "astro-component",
+    "astro",
+    "seo",
+    "astro-seo"
   ],
   "scripts": {},
   "devDependencies": {
@@ -22,11 +40,5 @@
   },
   "peerDependencies": {
     "astro": "^1.2.1"
-  },
-  "author": {
-    "name": "onWidget",
-    "email": "contact@onwidget.com",
-    "url": "https://github.com/onwidget"
-  },
-  "license": "MIT"
+  }
 }
