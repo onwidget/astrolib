@@ -1,0 +1,7 @@
+---
+const render = async (props: Record<string, any>) => {
+	const hasValues = Object.values(props).every(value => Boolean(value))
+	return hasValues ? new String(await Astro.slots.render('default')) : ''
+}
+---
+{render(Astro.props)}

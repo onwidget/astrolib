@@ -2,4 +2,3 @@
 // Then, use this file to export everything you want your user to access.
 
 export { default as GoogleAnalytics } from "./src/GoogleAnalytics.astro";
-export * from "./src/GoogleAnalytics.astro";
