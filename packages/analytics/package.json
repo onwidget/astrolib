@@ -1,6 +1,6 @@
 {
   "name": "@astrolib/analytics",
-  "version": "0.2.2",
+  "version": "0.2.4",
   "description": "Provides Analytics snippets injection for popular web analytics tools",
   "homepage": "https://github.com/onwidget/astrolib/tree/main/packages/analytics",
   "bugs": {
