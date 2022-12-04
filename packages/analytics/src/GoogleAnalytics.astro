@@ -3,7 +3,7 @@
 
 export interface Props {
   id: string;
-  partytown: boolean;
+  partytown?: boolean;
 }
 
 const { id = "GA_MEASUREMENT_ID", partytown = false } = Astro.props;
