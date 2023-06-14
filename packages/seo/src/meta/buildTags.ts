@@ -1,4 +1,6 @@
-import { BuildTagsParams, OpenGraphMedia } from './types';
+import { escape } from "html-escaper";
+
+import { BuildTagsParams, OpenGraphMedia } from "../types";
 
 const defaults = {
   templateTitle: "",
@@ -11,12 +13,9 @@ const defaults = {
 };
 
 const buildOpenGraphMediaTags = (
-  mediaType: 'image' | 'video',
+  mediaType: "image" | "video",
   media: ReadonlyArray<OpenGraphMedia> = [],
-  {
-    defaultWidth,
-    defaultHeight,
-  }: { defaultWidth?: number; defaultHeight?: number } = {},
+  { defaultWidth, defaultHeight }: { defaultWidth?: number; defaultHeight?: number } = {}
 ) => {
   return media.reduce((tags, medium, index) => {
     tags.push(`<meta property="og:${mediaType}" content="${medium.url}" />`);
@@ -67,7 +66,7 @@ const buildTags = (config: BuildTagsParams) => {
   }
 
   if (updatedTitle) {
-    tagsToRender.push(`<title>${updatedTitle}</title>`);
+    tagsToRender.push(`<title>${escape(updatedTitle)}</title>`);
   }
 
   const noindex = config.noindex || defaults.noindex || config.dangerouslySetAllPagesToNoIndex;
@@ -111,7 +110,7 @@ const buildTags = (config: BuildTagsParams) => {
   }
 
   if (config.description) {
-    tagsToRender.push(`<meta name="description" content="${config.description}" />`);
+    tagsToRender.push(`<meta name="description" content="${escape(config.description)}" />`);
   }
 
   if (config.mobileAlternate) {
@@ -149,12 +148,12 @@ const buildTags = (config: BuildTagsParams) => {
   }
 
   if (config.openGraph?.title || updatedTitle) {
-    tagsToRender.push(`<meta property="og:title" content="${config.openGraph?.title || updatedTitle}" />`);
+    tagsToRender.push(`<meta property="og:title" content="${escape(config.openGraph?.title || updatedTitle)}" />`);
   }
 
   if (config.openGraph?.description || config.description) {
     tagsToRender.push(
-      `<meta property="og:description" content="${config.openGraph?.description || config.description}" />`
+      `<meta property="og:description" content="${escape(config.openGraph?.description || config.description)}" />`
     );
   }
 
