@@ -1,6 +1,6 @@
 {
   "name": "@astrolib/seo",
-  "version": "0.2.2",
+  "version": "0.4.0",
   "description": "Managing your SEO easier in Astro projects",
   "homepage": "https://github.com/onwidget/astrolib/tree/main/packages/seo",
   "bugs": {
@@ -39,10 +39,10 @@
   ],
   "scripts": {},
   "devDependencies": {
-    "astro": "^1.2.1",
+    "astro": "^1.2.1 || ^2.0.0",
     "html-escaper": "^3.0.3"
   },
   "peerDependencies": {
-    "astro": "^1.2.1"
+    "astro": "^1.2.1 || ^2.0.0"
   }
 }
