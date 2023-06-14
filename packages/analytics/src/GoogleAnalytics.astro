@@ -1,26 +1,26 @@
 ---
-import ShowIf from './ShowIf.astro';
+// import ShowIf from './ShowIf.astro';
 
 export interface Props {
   id: string;
-  partytown: boolean;
+  partytown?: boolean;
 }
 
-const { id, partytown = false } = Astro.props;
+const { id = "GA_MEASUREMENT_ID", partytown = false } = Astro.props;
 
 const attrs = partytown ? { type: "text/partytown" } : {};
 ---
 
-<ShowIf id={id}>
-  <script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} {...attrs}></script>
+{/* <ShowIf id={id}> */}
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${id}`} {...attrs}></script>
 
-  <script is:inline define:vars={{ id }} {...attrs}>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() {
-      window.dataLayer.push(arguments);
-    }
-    gtag("js", new Date());
-    gtag("config", id);
-  </script>
-</ShowIf>
+<script is:inline define:vars={{ id }} {...attrs}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    window.dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", id);
+</script>
+{/* </ShowIf> */}
 
