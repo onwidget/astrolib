@@ -1,24 +1,23 @@
 ---
-import { AstroSeoProps } from "./types";
-import buildTags from "./meta/buildTags";
+import type { AstroSeoProps } from "./types";
+import { buildTags } from "./meta/buildTags";
 
 export interface Props extends AstroSeoProps {}
 
 const {
   title,
-  noindex = false,
+  titleTemplate,
+  noindex,
   nofollow,
   robotsProps,
   description,
   canonical,
+  mobileAlternate,
+  languageAlternates,
   openGraph,
   facebook,
   twitter,
   additionalMetaTags,
-  titleTemplate,
-  defaultTitle,
-  mobileAlternate,
-  languageAlternates,
   additionalLinkTags,
 } = Astro.props;
 ---
@@ -26,19 +25,18 @@ const {
 <Fragment
   set:html={buildTags({
     title,
+    titleTemplate,
     noindex,
     nofollow,
     robotsProps,
     description,
     canonical,
-    facebook,
-    openGraph,
-    additionalMetaTags,
-    twitter,
-    titleTemplate,
-    defaultTitle,
     mobileAlternate,
     languageAlternates,
+    openGraph,
+    facebook,
+    twitter,
+    additionalMetaTags,
     additionalLinkTags,
   })}
 />
