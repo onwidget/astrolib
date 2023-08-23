@@ -136,12 +136,14 @@ export const buildTags = (config: AstroSeoProps): string => {
 
   // OpenGraph
   if (config.openGraph) {
-    if (config.openGraph.title || config.title) {
-      addTag(createOpenGraphTag("title", config.openGraph.title || config.title));
+    const title = config.openGraph?.title || config.title;
+    if (title) {
+      addTag(createOpenGraphTag("title", title));
     }
 
-    if (config.openGraph.description || config.description) {
-      addTag(createOpenGraphTag("description", config.openGraph.description || config.description));
+    const description = config.openGraph?.description || config.description;
+    if (description) {
+      addTag(createOpenGraphTag("description", description));
     }
 
     if (config.openGraph.url) {
@@ -294,11 +296,11 @@ export const buildTags = (config: AstroSeoProps): string => {
         content: metaTag.content,
       };
 
-      if ("name" in metaTag) {
+      if ("name" in metaTag && metaTag.name) {
         attributes.name = metaTag.name;
-      } else if ("property" in metaTag) {
+      } else if ("property" in metaTag && metaTag.property) {
         attributes.property = metaTag.property;
-      } else if ("httpEquiv" in metaTag) {
+      } else if ("httpEquiv" in metaTag && metaTag.httpEquiv) {
         attributes["http-equiv"] = metaTag.httpEquiv;
       }
 

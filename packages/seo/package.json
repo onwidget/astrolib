@@ -1,6 +1,6 @@
 {
   "name": "@astrolib/seo",
-  "version": "1.0.0-beta.3",
+  "version": "1.0.0-beta.4",
   "description": "Managing your SEO easier in Astro projects",
   "homepage": "https://github.com/onwidget/astrolib/tree/main/packages/seo",
   "bugs": {
@@ -18,17 +18,19 @@
   },
   "license": "MIT",
   "type": "module",
-  "types": "./index.d.ts",
+  "main": "index.ts",
+  "types": "src/types.ts",
   "publishConfig": {
     "access": "public"
   },
   "exports": {
-    ".": "./index.ts"
+    ".": "./index.ts",
+    "./types": "./src/types.ts",
+    "./package.json": "./package.json"
   },
   "files": [
     "src",
-    "index.ts",
-    "index.d.ts"
+    "index.ts"
   ],
   "keywords": [
     "astro-component",

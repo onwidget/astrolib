@@ -1,4 +1,4 @@
-import { buildTags } from '../meta/buildTags';
+import { buildTags } from '../utils/buildTags';
 
 describe('buildTags function', () => {
   it('should return an empty string if no config is provided', () => {
@@ -11,6 +11,7 @@ describe('buildTags function', () => {
       title: null,
       description: undefined,
     };
+    // @ts-ignore
     const result = buildTags(config);
     expect(result).not.toContain('null');
     expect(result).not.toContain('undefined');
