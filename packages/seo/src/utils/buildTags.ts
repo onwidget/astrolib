@@ -5,14 +5,14 @@ const createMetaTag = (attributes: Record<string, string>): string => {
   const attrs = Object.entries(attributes)
     .map(([key, value]) => `${key}="${escape(value)}"`)
     .join(" ");
-  return `<meta ${attrs} />`;
+  return `<meta ${attrs}>`;
 };
 
 const createLinkTag = (attributes: Record<string, string>): string => {
   const attrs = Object.entries(attributes)
     .map(([key, value]) => `${key}="${escape(value)}"`)
     .join(" ");
-  return `<link ${attrs} />`;
+  return `<link ${attrs}>`;
 };
 
 const createOpenGraphTag = (property: string, content: string): string => {
@@ -63,7 +63,7 @@ export const buildTags = (config: AstroSeoProps): string => {
     addTag(
       `<meta ${Object.entries(attributes)
         .map(([key, value]) => `${key}="${escape(value)}"`)
-        .join(" ")} />`
+        .join(" ")}>`
     );
   };
 
@@ -71,7 +71,7 @@ export const buildTags = (config: AstroSeoProps): string => {
     addTag(
       `<link ${Object.entries(attributes)
         .map(([key, value]) => `${key}="${escape(value)}"`)
-        .join(" ")} />`
+        .join(" ")}>`
     );
   };
 
