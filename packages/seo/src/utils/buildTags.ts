@@ -5,21 +5,24 @@ const createMetaTag = (attributes: Record<string, string>): string => {
   const attrs = Object.entries(attributes)
     .map(([key, value]) => `${key}="${escape(value)}"`)
     .join(" ");
-  return `<meta ${attrs} />`;
+  return `<meta ${attrs}>`;
 };
 
 const createLinkTag = (attributes: Record<string, string>): string => {
   const attrs = Object.entries(attributes)
     .map(([key, value]) => `${key}="${escape(value)}"`)
     .join(" ");
-  return `<link ${attrs} />`;
+  return `<link ${attrs}>`;
 };
 
 const createOpenGraphTag = (property: string, content: string): string => {
   return createMetaTag({ property: `og:${property}`, content });
 };
 
-const buildOpenGraphMediaTags = (mediaType: "image" | "video", media: ReadonlyArray<OpenGraphMedia>): string => {
+const buildOpenGraphMediaTags = (
+  mediaType: "image" | "video",
+  media: ReadonlyArray<OpenGraphMedia>
+): string => {
   let tags = "";
 
   const addTag = (tag: string) => {
@@ -46,7 +49,9 @@ const buildOpenGraphMediaTags = (mediaType: "image" | "video", media: ReadonlyAr
     }
 
     if (medium.height) {
-      addTag(createOpenGraphTag(`${mediaType}:height`, medium.height.toString()));
+      addTag(
+        createOpenGraphTag(`${mediaType}:height`, medium.height.toString())
+      );
     }
   });
   return tags;
@@ -81,7 +86,9 @@ export const buildTags = (config: AstroSeoProps): string => {
 
   // Title
   if (config.title) {
-    const formattedTitle = config.titleTemplate ? config.titleTemplate.replace("%s", config.title) : config.title;
+    const formattedTitle = config.titleTemplate
+      ? config.titleTemplate.replace("%s", config.title)
+      : config.title;
     addTag(`<title>${escape(formattedTitle)}</title>`);
   }
 
@@ -101,14 +108,23 @@ export const buildTags = (config: AstroSeoProps): string => {
   }
 
   if (config.robotsProps) {
-    const { nosnippet, maxSnippet, maxImagePreview, noarchive, unavailableAfter, noimageindex, notranslate } =
-      config.robotsProps;
+    const {
+      nosnippet,
+      maxSnippet,
+      maxImagePreview,
+      noarchive,
+      unavailableAfter,
+      noimageindex,
+      notranslate,
+    } = config.robotsProps;
 
     if (nosnippet) robotsContent.push("nosnippet");
     if (maxSnippet) robotsContent.push(`max-snippet:${maxSnippet}`);
-    if (maxImagePreview) robotsContent.push(`max-image-preview:${maxImagePreview}`);
+    if (maxImagePreview)
+      robotsContent.push(`max-image-preview:${maxImagePreview}`);
     if (noarchive) robotsContent.push("noarchive");
-    if (unavailableAfter) robotsContent.push(`unavailable_after:${unavailableAfter}`);
+    if (unavailableAfter)
+      robotsContent.push(`unavailable_after:${unavailableAfter}`);
     if (noimageindex) robotsContent.push("noimageindex");
     if (notranslate) robotsContent.push("notranslate");
   }
@@ -124,13 +140,25 @@ export const buildTags = (config: AstroSeoProps): string => {
 
   // Mobile Alternate
   if (config.mobileAlternate) {
-    addTag(createLinkTag({ rel: "alternate", media: config.mobileAlternate.media, href: config.mobileAlternate.href }));
+    addTag(
+      createLinkTag({
+        rel: "alternate",
+        media: config.mobileAlternate.media,
+        href: config.mobileAlternate.href,
+      })
+    );
   }
 
   // Language Alternates
   if (config.languageAlternates && config.languageAlternates.length > 0) {
     config.languageAlternates.forEach((languageAlternate) => {
-      addTag(createLinkTag({ rel: "alternate", hrefLang: languageAlternate.hrefLang, href: languageAlternate.href }));
+      addTag(
+        createLinkTag({
+          rel: "alternate",
+          hreflang: languageAlternate.hreflang,
+          href: languageAlternate.href,
+        })
+      );
     });
   }
 
@@ -173,22 +201,42 @@ export const buildTags = (config: AstroSeoProps): string => {
     // Open Graph Profile
     if (config.openGraph.profile) {
       if (config.openGraph.profile.firstName) {
-        addTag(createOpenGraphTag("profile:first_name", config.openGraph.profile.firstName));
+        addTag(
+          createOpenGraphTag(
+            "profile:first_name",
+            config.openGraph.profile.firstName
+          )
+        );
       }
       if (config.openGraph.profile.lastName) {
-        addTag(createOpenGraphTag("profile:last_name", config.openGraph.profile.lastName));
+        addTag(
+          createOpenGraphTag(
+            "profile:last_name",
+            config.openGraph.profile.lastName
+          )
+        );
       }
       if (config.openGraph.profile.username) {
-        addTag(createOpenGraphTag("profile:username", config.openGraph.profile.username));
+        addTag(
+          createOpenGraphTag(
+            "profile:username",
+            config.openGraph.profile.username
+          )
+        );
       }
       if (config.openGraph.profile.gender) {
-        addTag(createOpenGraphTag("profile:gender", config.openGraph.profile.gender));
+        addTag(
+          createOpenGraphTag("profile:gender", config.openGraph.profile.gender)
+        );
       }
     }
 
     // Open Graph Book
     if (config.openGraph.book) {
-      if (config.openGraph.book.authors && config.openGraph.book.authors.length) {
+      if (
+        config.openGraph.book.authors &&
+        config.openGraph.book.authors.length
+      ) {
         config.openGraph.book.authors.forEach((author) => {
           addTag(createOpenGraphTag("book:author", author));
         });
@@ -197,7 +245,12 @@ export const buildTags = (config: AstroSeoProps): string => {
         addTag(createOpenGraphTag("book:isbn", config.openGraph.book.isbn));
       }
       if (config.openGraph.book.releaseDate) {
-        addTag(createOpenGraphTag("book:release_date", config.openGraph.book.releaseDate));
+        addTag(
+          createOpenGraphTag(
+            "book:release_date",
+            config.openGraph.book.releaseDate
+          )
+        );
       }
       if (config.openGraph.book.tags && config.openGraph.book.tags.length) {
         config.openGraph.book.tags.forEach((tag) => {
@@ -209,23 +262,49 @@ export const buildTags = (config: AstroSeoProps): string => {
     // Open Graph Article
     if (config.openGraph.article) {
       if (config.openGraph.article.publishedTime) {
-        addTag(createOpenGraphTag("article:published_time", config.openGraph.article.publishedTime));
+        addTag(
+          createOpenGraphTag(
+            "article:published_time",
+            config.openGraph.article.publishedTime
+          )
+        );
       }
       if (config.openGraph.article.modifiedTime) {
-        addTag(createOpenGraphTag("article:modified_time", config.openGraph.article.modifiedTime));
+        addTag(
+          createOpenGraphTag(
+            "article:modified_time",
+            config.openGraph.article.modifiedTime
+          )
+        );
       }
       if (config.openGraph.article.expirationTime) {
-        addTag(createOpenGraphTag("article:expiration_time", config.openGraph.article.expirationTime));
+        addTag(
+          createOpenGraphTag(
+            "article:expiration_time",
+            config.openGraph.article.expirationTime
+          )
+        );
       }
-      if (config.openGraph.article.authors && config.openGraph.article.authors.length) {
+      if (
+        config.openGraph.article.authors &&
+        config.openGraph.article.authors.length
+      ) {
         config.openGraph.article.authors.forEach((author) => {
           addTag(createOpenGraphTag("article:author", author));
         });
       }
       if (config.openGraph.article.section) {
-        addTag(createOpenGraphTag("article:section", config.openGraph.article.section));
+        addTag(
+          createOpenGraphTag(
+            "article:section",
+            config.openGraph.article.section
+          )
+        );
       }
-      if (config.openGraph.article.tags && config.openGraph.article.tags.length) {
+      if (
+        config.openGraph.article.tags &&
+        config.openGraph.article.tags.length
+      ) {
         config.openGraph.article.tags.forEach((tag) => {
           addTag(createOpenGraphTag("article:tag", tag));
         });
@@ -234,7 +313,10 @@ export const buildTags = (config: AstroSeoProps): string => {
 
     // Open Graph Video
     if (config.openGraph.video) {
-      if (config.openGraph.video.actors && config.openGraph.video.actors.length) {
+      if (
+        config.openGraph.video.actors &&
+        config.openGraph.video.actors.length
+      ) {
         config.openGraph.video.actors.forEach((actor) => {
           addTag(createOpenGraphTag("video:actor", actor.profile));
           if (actor.role) {
@@ -242,21 +324,37 @@ export const buildTags = (config: AstroSeoProps): string => {
           }
         });
       }
-      if (config.openGraph.video.directors && config.openGraph.video.directors.length) {
+      if (
+        config.openGraph.video.directors &&
+        config.openGraph.video.directors.length
+      ) {
         config.openGraph.video.directors.forEach((director) => {
           addTag(createOpenGraphTag("video:director", director));
         });
       }
-      if (config.openGraph.video.writers && config.openGraph.video.writers.length) {
+      if (
+        config.openGraph.video.writers &&
+        config.openGraph.video.writers.length
+      ) {
         config.openGraph.video.writers.forEach((writer) => {
           addTag(createOpenGraphTag("video:writer", writer));
         });
       }
       if (config.openGraph.video.duration) {
-        addTag(createOpenGraphTag("video:duration", config.openGraph.video.duration.toString()));
+        addTag(
+          createOpenGraphTag(
+            "video:duration",
+            config.openGraph.video.duration.toString()
+          )
+        );
       }
       if (config.openGraph.video.releaseDate) {
-        addTag(createOpenGraphTag("video:release_date", config.openGraph.video.releaseDate));
+        addTag(
+          createOpenGraphTag(
+            "video:release_date",
+            config.openGraph.video.releaseDate
+          )
+        );
       }
       if (config.openGraph.video.tags && config.openGraph.video.tags.length) {
         config.openGraph.video.tags.forEach((tag) => {
@@ -264,28 +362,44 @@ export const buildTags = (config: AstroSeoProps): string => {
         });
       }
       if (config.openGraph.video.series) {
-        addTag(createOpenGraphTag("video:series", config.openGraph.video.series));
+        addTag(
+          createOpenGraphTag("video:series", config.openGraph.video.series)
+        );
       }
     }
   }
 
   // Facebook
   if (config.facebook && config.facebook.appId) {
-    addTag(createMetaTag({ property: "fb:app_id", content: config.facebook.appId }));
+    addTag(
+      createMetaTag({ property: "fb:app_id", content: config.facebook.appId })
+    );
   }
 
   // Twitter
   if (config.twitter) {
     if (config.twitter.cardType) {
-      addTag(createMetaTag({ name: "twitter:card", content: config.twitter.cardType }));
+      addTag(
+        createMetaTag({
+          name: "twitter:card",
+          content: config.twitter.cardType,
+        })
+      );
     }
 
     if (config.twitter.site) {
-      addTag(createMetaTag({ name: "twitter:site", content: config.twitter.site }));
+      addTag(
+        createMetaTag({ name: "twitter:site", content: config.twitter.site })
+      );
     }
 
     if (config.twitter.handle) {
-      addTag(createMetaTag({ name: "twitter:creator", content: config.twitter.handle }));
+      addTag(
+        createMetaTag({
+          name: "twitter:creator",
+          content: config.twitter.handle,
+        })
+      );
     }
   }
 
