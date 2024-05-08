@@ -119,7 +119,7 @@ export const buildTags = (config: AstroSeoProps): string => {
     } = config.robotsProps;
 
     if (nosnippet) robotsContent.push("nosnippet");
-    if (maxSnippet) robotsContent.push(`max-snippet:${maxSnippet}`);
+    if (typeof maxSnippet === 'number') robotsContent.push(`max-snippet:${maxSnippet}`);
     if (maxImagePreview)
       robotsContent.push(`max-image-preview:${maxImagePreview}`);
     if (noarchive) robotsContent.push("noarchive");
